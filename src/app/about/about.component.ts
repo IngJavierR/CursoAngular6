@@ -30,8 +30,4 @@ export class AboutComponent implements OnInit {
         })
     }
 
-    raiseNotification() {
-        this._data.setGeneralNotificationMessage('Notificación de prueba');
-    }
-
 }

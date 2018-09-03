@@ -24,13 +24,6 @@ export class AppComponent {
     this._dataService
         .getIsLogged()
         .subscribe(isLogged => this.isLogged = isLogged);
-    this._dataService
-        .getGeneralNotificationMessage()
-        .subscribe(msg => {
-          this._snackBar.open(msg, 'Ok', {
-            duration: 2000
-          });
-        });
   }
 
   logout() {

@@ -7,19 +7,10 @@ import { Subject } from 'rxjs';
 export class DataService {
 
   constructor() { }
-
-  private generalNotificationMessage = new Subject<string>();
+  
   private isLoading = new Subject<boolean>();
   public isLogged: boolean;
   public isLoggedEvent = new Subject<boolean>();
-
-  getGeneralNotificationMessage() {
-      return this.generalNotificationMessage.asObservable();
-  }
-
-  setGeneralNotificationMessage(msg: string){
-      this.generalNotificationMessage.next(msg);
-  }
 
   getIsLoadingEvent(){
       return this.isLoading.asObservable();
