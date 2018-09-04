@@ -20,7 +20,8 @@ import { MainComponent } from './main/main.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { FormularioComponent } from './formulario/formulario.component';
-import { ExcelComponent } from "./excel/excel.component";
+import { ExcelComponent } from "./control/excel/excel.component";
+import { ControlExcelComponent } from './control/control-excel/control-excel.component';
 
 export const MATERIAL_COMPONENTS = [
   MatToolbarModule,
@@ -41,7 +42,8 @@ export const MATERIAL_COMPONENTS = [
     AboutComponent,
     ContactComponent,
     FormularioComponent,
-    ExcelComponent
+    ExcelComponent,
+    ControlExcelComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,18 @@
+<h1>Excel</h1>
+<table style="width:100%">
+    <tr>
+        <th>Name</th>
+        <th>Age</th> 
+        <th>Job</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let content of contentTable">
+        <td>{{content.name}}</td>
+        <td>{{content.age}}</td> 
+        <td>{{content.job}}</td>
+        <td>
+            <button mat-raised-button color="primary" (click)="selectElement(content)">Check</button>
+        </td>
+    </tr>
+    
+</table>
