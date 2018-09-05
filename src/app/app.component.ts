@@ -16,14 +16,26 @@ export class AppComponent {
   title = 'Angular5+ Base Material';
   isLoading = false;
   isLogged = false;
-  constructor(private _dataService: DataService, private _snackBar: MatSnackBar, private router: Router){
+  constructor(private _dataService: DataService, 
+              public snackBar: MatSnackBar,
+              private router: Router){
     this.isLogged = this._dataService.isLogged;
+    
     this._dataService
         .getIsLoadingEvent()
         .subscribe(isLoad => this.isLoading = isLoad);
+    
+    
     this._dataService
         .getIsLogged()
         .subscribe(isLogged => this.isLogged = isLogged);
+    
+    this._dataService.getNotificationEvent().subscribe(msg => {
+      this.snackBar.open(msg, 'Ok', {
+        duration: 2000,
+      });
+    });
+
   }
 
   logout() {

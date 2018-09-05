@@ -11,6 +11,15 @@ export class DataService {
   private isLoading = new Subject<boolean>();
   public isLogged: boolean;
   public isLoggedEvent = new Subject<boolean>();
+  public notificationEvent = new Subject<string>();
+
+  setNotificationEvent(message: string) {
+    this.notificationEvent.next(message);
+  }
+
+  getNotificationEvent() {
+    return this.notificationEvent.asObservable();
+  }
 
   getIsLoadingEvent(){
       return this.isLoading.asObservable();

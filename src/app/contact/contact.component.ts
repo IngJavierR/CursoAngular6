@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-contact',
@@ -9,7 +10,8 @@ import { FormBuilder, Validators, FormArray } from '@angular/forms';
 export class ContactComponent implements OnInit {
 
   formInfo: FormArray;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, 
+              private _dataservice: DataService) { }
   
   profileForm = this.fb.group({
     formInfoGroups : this.fb.array([])
@@ -25,6 +27,12 @@ export class ContactComponent implements OnInit {
 
   submit() {
     this.formInfoGroups.controls.forEach(x => console.log(x.value));
+    this._dataservice.setIsLoadingEvent(true);
+
+    setTimeout(() => {
+      this._dataservice.setIsLoadingEvent(false);
+      this._dataservice.setNotificationEvent('Todo bien!');
+    }, 3000);
   } 
 
   agregar() {

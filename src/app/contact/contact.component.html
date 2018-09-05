@@ -1,5 +1,4 @@
 <div class="main-container">
-    <excel-axity [num-rows]="10"></excel-axity>
   <h1>Contact</h1>
   <form class="container" [formGroup]="profileForm" (submit)="submit()">
       <app-formulario *ngFor="let formInfo of formInfoGroups.controls" [form-info]="formInfo" [form-group]="profileForm"></app-formulario>
