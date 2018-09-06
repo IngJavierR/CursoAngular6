@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { DataService } from '../services/data.service';
+import { ConsumeService } from '../services/consume.service';
 
 @Component({
   selector: 'app-contact',
@@ -11,7 +12,8 @@ export class ContactComponent implements OnInit {
 
   formInfo: FormArray;
   constructor(private fb: FormBuilder, 
-              private _dataservice: DataService) { }
+              private _dataservice: DataService,
+              private _consumer: ConsumeService) { }
   
   profileForm = this.fb.group({
     formInfoGroups : this.fb.array([])
@@ -27,12 +29,18 @@ export class ContactComponent implements OnInit {
 
   submit() {
     this.formInfoGroups.controls.forEach(x => console.log(x.value));
+  
     this._dataservice.setIsLoadingEvent(true);
 
-    setTimeout(() => {
+    this._consumer.getJoke().subscribe(response => {
+      console.log('Response', response);
+    }, error => {
+      this._dataservice.setNotificationEvent(`Ocurrio un error [${error}]`);
+      this._dataservice.setIsLoadingEvent(false);
+    }, () => {
       this._dataservice.setIsLoadingEvent(false);
       this._dataservice.setNotificationEvent('Todo bien!');
-    }, 3000);
+    });
   } 
 
   agregar() {
